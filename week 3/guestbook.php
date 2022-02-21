@@ -9,16 +9,16 @@
 
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
 
-<textarea cols=40 rows=5 name=note wrap=virtual></textarea>
-<input type=submit value=" Send it ">
+<textarea cols=40 rows=5 name="note" wrap=virtual></textarea><br/>
+<input type="submit" value=" Send it ">
 </form>
 
 <?php
-    if(isset($_POST[note]))
+    if(isset($_POST['note']))
     {
        // Substitute your login in place of "yourLogin"
        $fp = fopen("yourLogin.txt","a");
-       fputs($fp,nl2br($_POST[note]).'<br>');
+       fputs($fp,nl2br($_POST['note']).'<br>');
        fclose($fp);
     }
 ?>
