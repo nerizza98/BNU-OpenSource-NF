@@ -1,21 +1,16 @@
-<?php
- 
-// Create connection
-$conn = new mysqli("localhost", "root", "", "test");
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+<?php    
 
-$newnum = $_POST[phone_number];
+    // Connect to server and select database
+    $link = mysqli_connect('localhost', 'root', '', 'test');
 
-$sql = "UPDATE test SET phone_number= $newnum WHERE name = '$_GET[id]'";
+    $sql = "UPDATE test SET name = '{$_POST["txtname"]}',
+    email = '{$_POST["txtemail"]}',
+    phone_number = '{$_POST["txttelno"]}' 
+    where ID = '{$_GET["id"]}'; ";
 
-if ($conn->query($sql) === TRUE) {
-  echo "Record updated successfully";
-} else {
-  echo "Error updating record: " . $conn->error;
-}
+    // Execute query
+    $result = mysqli_query($link, $sql);
+    
+    header('Location: wk6ex2.php?msg=Saved successfully!');
 
-$conn->close();
 ?>
